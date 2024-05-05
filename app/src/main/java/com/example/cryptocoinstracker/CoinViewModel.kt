@@ -1,17 +1,18 @@
-package com.example.criptocoinstracker
+package com.example.cryptocoinstracker
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import com.example.criptocoinstracker.api.ApiFactory
-import com.example.criptocoinstracker.database.AppDatabase
-import com.example.criptocoinstracker.pojo.CoinPriceInfo
-import com.example.criptocoinstracker.pojo.CoinPriceInfoRawData
+import com.example.cryptocoinstracker.api.ApiFactory
+import com.example.cryptocoinstracker.database.AppDatabase
+import com.example.cryptocoinstracker.pojo.CoinPriceInfo
+import com.example.cryptocoinstracker.pojo.CoinPriceInfoRawData
 import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class CoinViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -19,7 +20,11 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
     private val compositeDisposable = CompositeDisposable()
     val priceList = database.coinPriceInfoDao().getPriceList()
 
-    fun loadData() {
+    init {
+        loadData()
+    }
+
+    private fun loadData() {
         val disposable: Disposable = ApiFactory.apiService.getTopCoinsInfo(limit = 10)
             //in CoinInfoDataList -> Datum -> CoinInfo.name. out BTC,ETH....
             .map { it.data?.map { it.coinInfo?.name }?.joinToString(",").toString() }
@@ -27,6 +32,9 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
             .flatMap { ApiFactory.apiService.getFullPriceList(fSyms = it) }
             //in jsonObject out List<CoinPriceInfo>
             .map { getPriceListFromRawData(it) }
+            .delaySubscription(10, TimeUnit.SECONDS)
+            .repeat()
+            .retry()
             .subscribeOn(Schedulers.io())
             .subscribe({
                 database.coinPriceInfoDao().insertPriceList(it)

@@ -1,8 +1,8 @@
-package com.example.criptocoinstracker.api
+package com.example.cryptocoinstracker.api
 
 import com.example.criptocoinstracker.BuildConfig
-import com.example.criptocoinstracker.pojo.CoinInfoDataList
-import com.example.criptocoinstracker.pojo.CoinPriceInfoRawData
+import com.example.cryptocoinstracker.pojo.CoinInfoDataList
+import com.example.cryptocoinstracker.pojo.CoinPriceInfoRawData
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,6 +11,7 @@ interface ApiService {
 
     @GET("top/totalvolfull")
     fun getTopCoinsInfo(
+
         @Query(QUERY_PARAM_API_KEY) apiKey: String = BuildConfig.API_KEY,
         @Query(QUERY_PARAM_LIMIT) limit: Int = 10,
         @Query(QUERY_PARAM_TO_SYMBOL) tSym: String = CURRENCY

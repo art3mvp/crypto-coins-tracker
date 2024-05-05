@@ -1,10 +1,10 @@
-package com.example.criptocoinstracker
+package com.example.cryptocoinstracker
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.example.criptocoinstracker.database.AppDatabase
-import com.example.criptocoinstracker.pojo.CoinPriceInfo
+import com.example.cryptocoinstracker.database.AppDatabase
+import com.example.cryptocoinstracker.pojo.CoinPriceInfo
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 class CoinDetailViewModel(application: Application): AndroidViewModel(application){

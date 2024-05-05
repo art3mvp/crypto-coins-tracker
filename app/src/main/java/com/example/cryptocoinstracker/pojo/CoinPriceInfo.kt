@@ -1,9 +1,11 @@
-package com.example.criptocoinstracker.pojo
+package com.example.cryptocoinstracker.pojo
 
 import android.annotation.SuppressLint
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.cryptocoinstracker.api.ApiFactory.BASE_IMAGE_URL
+import com.example.cryptocoinstracker.utils.convertTimeStampToTime
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -57,6 +59,18 @@ data class CoinPriceInfo (
 
     @SerializedName("LASTUPDATE")
     @Expose
-    var lastupdate: Int? = null,
+    var lastupdate: Long? = null,
 
-)
+    @SerializedName("IMAGEURL")
+    @Expose
+    var imageUrl: String? = null
+
+) {
+    fun getFormattedTime(): String {
+        return convertTimeStampToTime(lastupdate)
+    }
+
+    fun getFullImageUrl(): String {
+        return BASE_IMAGE_URL + imageUrl
+    }
+}

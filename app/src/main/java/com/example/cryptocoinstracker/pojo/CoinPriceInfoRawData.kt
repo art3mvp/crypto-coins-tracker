@@ -1,4 +1,4 @@
-package com.example.criptocoinstracker.pojo
+package com.example.cryptocoinstracker.pojo
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose
