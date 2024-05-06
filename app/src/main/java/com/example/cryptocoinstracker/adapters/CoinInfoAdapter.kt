@@ -40,7 +40,7 @@ class CoinInfoAdapter(private val context: Context) :
             val symbolsTemplate = context.resources.getString(R.string.symbols_template)
             val lastUpdateTemplate = context.resources.getString(R.string.last_update_template)
 
-            textViewSymbols.text = String.format(symbolsTemplate, coin.fromsymbol, coin.tosymbol)
+            textViewSymbols.text = String.format(symbolsTemplate, coin.fromSymbol, coin.toSymbol)
             textViewPrice.text = coin.price.toString()
             textViewLastUpdate.text = String.format(lastUpdateTemplate, coin.getFormattedTime())
             Picasso.get().load(coin.getFullImageUrl()).into(imageViewLogo)

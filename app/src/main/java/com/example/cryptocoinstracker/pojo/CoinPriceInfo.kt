@@ -14,60 +14,52 @@ data class CoinPriceInfo (
 
     @SerializedName("TYPE")
     @Expose
-    var type: String? = null,
+    val type: String? = null,
 
     @SerializedName("MARKET")
     @Expose
-    var market: String? = null,
+    val market: String? = null,
 
     @SerializedName("FROMSYMBOL")
     @Expose
     @PrimaryKey
-    var fromsymbol: String,
+    val fromSymbol: String,
 
     @SerializedName("TOSYMBOL")
     @Expose
-    var tosymbol: String? = null,
+    val toSymbol: String? = null,
 
     @SerializedName("FLAGS")
     @Expose
-    var flags: String? = null,
+    val flags: String? = null,
 
     @SerializedName("LASTMARKET")
     @Expose
-    var lastmarket: String? = null,
-
-    @SerializedName("MEDIAN")
-    @Expose
-    var median: Double? = null,
-
-    @SerializedName("TOPTIERVOLUME24HOUR")
-    @Expose
-    var toptiervolume24hour: Double? = null,
-
-    @SerializedName("TOPTIERVOLUME24HOURTO")
-    @Expose
-    var toptiervolume24hourto: Double? = null,
-
-    @SerializedName("LASTTRADEID")
-    @Expose
-    var lasttradeid: String? = null,
+    val lastMarket: String? = null,
 
     @SerializedName("PRICE")
     @Expose
-    var price: Double? = null,
+    val price: Double? = null,
 
     @SerializedName("LASTUPDATE")
     @Expose
-    var lastupdate: Long? = null,
+    val lastUpdate: Long? = null,
 
     @SerializedName("IMAGEURL")
     @Expose
-    var imageUrl: String? = null
+    val imageUrl: String? = null,
+
+    @SerializedName("HIGHDAY")
+    @Expose
+    val highDay: Double? = null,
+
+    @SerializedName("LOWDAY")
+    @Expose
+    val lowDay: Double? = null
 
 ) {
     fun getFormattedTime(): String {
-        return convertTimeStampToTime(lastupdate)
+        return convertTimeStampToTime(lastUpdate)
     }
 
     fun getFullImageUrl(): String {
