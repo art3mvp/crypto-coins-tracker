@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Crypto Coins Tracker</string>
     <string name="symbols_template">%s // %s</string>
-    <string name="last_update_template">Last update at: %s</string>
-    <string name="current_price">Current price: %s</string>
-    <string name="min_price">Min day price: %s</string>
-    <string name="max_price">Max day price: %s</string>
-    <string name="last_deal">Last deal: %s</string>
+    <string name="last_update_template">Last update at: </string>
+    <string name="current_price">Current price: </string>
+    <string name="min_price">Min day price: </string>
+    <string name="max_price">Max day price: </string>
+    <string name="last_deal">Last deal: </string>
 </resources>

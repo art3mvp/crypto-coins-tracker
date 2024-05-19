@@ -11,15 +11,13 @@ import com.example.cryptocoinstracker.presentation.adapters.CoinInfoAdapter
 class CoinPriceListActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CoinViewModel
-    private val recyclerView by lazy {
-        binding.recyclerViewCoinPriceList
-    }
     private lateinit var coinInfoAdapter: CoinInfoAdapter
-    private lateinit var binding: ActivityCoinPriceListBinding
+    private val binding by lazy {
+        ActivityCoinPriceListBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCoinPriceListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
@@ -36,9 +34,10 @@ class CoinPriceListActivity : AppCompatActivity() {
             }
         }
         binding.recyclerViewCoinPriceList.adapter = coinInfoAdapter
+        binding.recyclerViewCoinPriceList.itemAnimator = null
 
         viewModel.coinInfoList.observe(this) {
-            coinInfoAdapter.coinInfoList = it
+            coinInfoAdapter.submitList(it)
         }
 
     }

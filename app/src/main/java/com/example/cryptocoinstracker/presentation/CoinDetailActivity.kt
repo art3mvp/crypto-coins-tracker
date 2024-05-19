@@ -13,30 +13,26 @@ class CoinDetailActivity : AppCompatActivity() {
 
 
     private lateinit var viewModel: CoinDetailViewModel
-    private lateinit var binding: ActivityCoinDetailBinding
+    private val binding by lazy {
+        ActivityCoinDetailBinding.inflate(layoutInflater)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCoinDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
         intent.getStringExtra(EXTRA_FSYM)?.let { it ->
             viewModel = ViewModelProvider(this)[CoinDetailViewModel::class.java]
             viewModel.getCoinInfo(it).observe(this) {
-                binding.textViewCoinPrice.text =
-                    String.format(getString(R.string.current_price), it.price.toString())
-                binding.textViewCoinTitle.text =
-                    String.format(getString(R.string.symbols_template), it.fromSymbol, it.toSymbol)
-                binding.textViewDayMin.text =
-                    String.format(getString(R.string.min_price), it.lowDay.toString())
-                binding.textViewDayMax.text =
-                    String.format(getString(R.string.max_price), it.highDay.toString())
-                binding.textViewCoinLastUpdate.text =
-                    String.format(getString(R.string.last_update_template), it.lastUpdate)
-                binding.textViewCoinLastDeal.text =
-                    String.format(getString(R.string.last_deal), it.lastMarket)
+                binding.textViewCoinPrice.text = it.price.toString()
+                binding.textViewCoinTitleFromSymbol.text = it.fromSymbol
+                binding.textViewCoinTitleToSymbol.text = it.toSymbol
+                binding.textViewDayMin.text = it.lowDay.toString()
+                binding.textViewDayMax.text = it.highDay.toString()
+                binding.textViewCoinLastUpdate.text = it.lastUpdate
+                binding.textViewCoinLastDeal.text = it.lastMarket
 
                 Picasso.get().load(it.imageUrl).into(binding.imageViewCoinImage)
             }

@@ -18,7 +18,7 @@ class CoinMapper {
         fromSymbol = dto.fromSymbol,
         toSymbol = dto.toSymbol,
         lastMarket = dto.lastMarket,
-        price = dto.price.toString(),
+        price = dto.price,
         lastUpdate = dto.lastUpdate,
         imageUrl = BASE_IMAGE_URL + dto.imageUrl,
         highDay = dto.highDay.toString(),
@@ -49,7 +49,7 @@ class CoinMapper {
         fromSymbol = dbModel.fromSymbol,
         toSymbol = dbModel.toSymbol,
         lastMarket = dbModel.lastMarket,
-        price = dbModel.price,
+        price = convertDoubleToStringTwoDecimals(dbModel.price),
         lastUpdate = convertTimeStampToTime(dbModel.lastUpdate),
         imageUrl = dbModel.imageUrl,
         highDay = dbModel.highDay,
@@ -70,6 +70,10 @@ class CoinMapper {
         val sdf = SimpleDateFormat(pattern, Locale.getDefault())
         sdf.timeZone = TimeZone.getDefault()
         return sdf.format(date)
+    }
+
+    private fun convertDoubleToStringTwoDecimals(price: Double?): String {
+        return String.format("%.02f", price)
     }
 
     companion object {
