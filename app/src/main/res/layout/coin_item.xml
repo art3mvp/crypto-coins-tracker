@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardUseCompatPadding="true"
-    android:layout_marginVertical="2dp">
+    android:layout_marginVertical="2dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,45 +34,46 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
-            tools:text="1.000241"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/textViewSymbols"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/textViewSymbols"
+            tools:text="1.000241" />
 
         <TextView
             android:id="@+id/textViewLastUpdateLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/last_update_template"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:text="@string/last_update_template"
-            app:layout_constraintTop_toBottomOf="@id/textViewPrice"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/textViewLastUpdate"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/textViewPrice" />
 
         <TextView
             android:id="@+id/textViewLastUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:paddingLeft="6dp"
-            android:paddingRight="16dp"
             android:paddingVertical="16dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="16dp"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14sp"
-            tools:text="11:30:21"
-            app:layout_constraintTop_toBottomOf="@id/textViewPrice"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/textViewPrice"
+            tools:text="11:30:21" />
 
         <ImageView
             android:id="@+id/imageViewLogo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_margin="30dp"
             android:layout_marginStart="16dp"
+            android:contentDescription="@string/coin_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

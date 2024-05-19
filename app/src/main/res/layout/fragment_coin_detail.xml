@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.cryptocoinstracker.presentation.CoinDetailActivity">
+
+
+    <ImageView
+        android:id="@+id/imageViewCoinImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="12dp"
+        android:contentDescription="@string/coin_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textViewCoinTitleFromSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@id/textViewCoinTitleToSymbol"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewCoinImage"
+        tools:text="FromSymbol" />
+
+    <TextView
+        android:id="@+id/textViewCoinTitleToSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/textViewCoinTitleFromSymbol"
+        app:layout_constraintTop_toBottomOf="@id/imageViewCoinImage"
+        tools:text="ToSymbol" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewCoinInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewCoinTitleFromSymbol">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+
+            <TextView
+                android:id="@+id/textViewCoinPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/current_price"
+                app:layout_constraintEnd_toStartOf="@id/textViewCoinPrice"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewCoinPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toEndOf="@id/textViewCoinPriceLabel"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1000$" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/grey"
+                app:layout_constraintTop_toBottomOf="@id/textViewCoinPriceLabel" />
+
+            <TextView
+                android:id="@+id/textViewDayMinLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/min_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewCoinPriceLabel" />
+
+            <TextView
+                android:id="@+id/textViewDayMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textColor="@android:color/holo_red_dark"
+                app:layout_constraintStart_toEndOf="@id/textViewDayMinLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewCoinPriceLabel"
+                tools:text="1000$" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/grey"
+                app:layout_constraintTop_toBottomOf="@id/textViewDayMin" />
+
+            <TextView
+                android:id="@+id/textViewDayMaxLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/max_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDayMin" />
+
+            <TextView
+                android:id="@+id/textViewDayMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textColor="@android:color/holo_green_dark"
+                app:layout_constraintStart_toEndOf="@id/textViewDayMaxLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewDayMin"
+                tools:text="1200$" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/grey"
+                app:layout_constraintTop_toBottomOf="@id/textViewDayMax" />
+
+            <TextView
+                android:id="@+id/textViewCoinLastDealLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/last_deal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDayMax" />
+
+            <TextView
+                android:id="@+id/textViewCoinLastDeal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toEndOf="@id/textViewCoinLastDealLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewDayMax"
+                tools:text="Market" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/grey"
+                app:layout_constraintTop_toBottomOf="@id/textViewCoinLastDeal" />
+
+            <TextView
+                android:id="@+id/textViewCoinLastUpdateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/last_update_template"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewCoinLastDeal" />
+
+            <TextView
+                android:id="@+id/textViewCoinLastUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toEndOf="@id/textViewCoinLastUpdateLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewCoinLastDeal"
+                tools:text="12:12:12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

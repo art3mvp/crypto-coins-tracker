@@ -11,7 +11,7 @@ import com.example.cryptocoinstracker.data.network.model.CoinInfoDto
 @Dao
 interface CoinInfoDao {
 
-    @Query("SELECT * FROM full_price_list ORDER BY lastupdate DESC")
+    @Query("SELECT * FROM full_price_list WHERE price > 1 ORDER BY lastupdate DESC ")
     fun getPriceList(): LiveData<List<CoinInfoDbModel>>
 
     @Query("SELECT * FROM full_price_list WHERE fromsymbol == :fSym LIMIT 1")
