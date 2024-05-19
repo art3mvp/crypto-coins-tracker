@@ -9,13 +9,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.criptocoinstracker"
+    namespace = "com.example.cryptocoinstracker"
     compileSdk = 34
 
     buildFeatures.buildConfig = true
 
     defaultConfig {
-        applicationId = "com.example.criptocoinstracker"
+        applicationId = "com.example.cryptocoinstracker"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -65,16 +65,13 @@ dependencies {
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
 
-    implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
-    implementation("io.reactivex.rxjava3:rxjava:3.1.5")
 
     val room_version = "2.6.1"
 
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
-    implementation("androidx.room:room-rxjava3:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
 
     implementation("com.squareup.picasso:picasso:2.8")
 
@@ -82,5 +79,14 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    val work_version = "2.9.0"
+    implementation("androidx.work:work-runtime-ktx:$work_version")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
 
 }

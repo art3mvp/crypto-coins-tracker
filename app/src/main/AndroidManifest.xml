@@ -12,13 +12,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CriptoCoinsTracker"
+        android:theme="@style/Theme.CryptoCoinsTracker"
         tools:targetApi="31">
         <activity
-            android:name="com.example.cryptocoinstracker.CoinDetailActivity"
+            android:name="com.example.cryptocoinstracker.presentation.CoinDetailActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.cryptocoinstracker.CoinPriceListActivity"
+            android:name="com.example.cryptocoinstracker.presentation.CoinPriceListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

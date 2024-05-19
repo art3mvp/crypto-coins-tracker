@@ -1,20 +1,19 @@
-package com.example.cryptocoinstracker
+package com.example.cryptocoinstracker.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import com.example.criptocoinstracker.databinding.ActivityCoinPriceListBinding
-import com.example.cryptocoinstracker.adapters.CoinInfoAdapter
-import com.example.cryptocoinstracker.pojo.CoinPriceInfo
-import io.reactivex.rxjava3.disposables.CompositeDisposable
+import com.example.cryptocoinstracker.databinding.ActivityCoinPriceListBinding
+import com.example.cryptocoinstracker.domain.CoinInfo
+import com.example.cryptocoinstracker.presentation.adapters.CoinInfoAdapter
 
 
 class CoinPriceListActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CoinViewModel
-    private lateinit var recyclerView: RecyclerView
+    private val recyclerView by lazy {
+        binding.recyclerViewCoinPriceList
+    }
     private lateinit var coinInfoAdapter: CoinInfoAdapter
     private lateinit var binding: ActivityCoinPriceListBinding
 
@@ -23,30 +22,24 @@ class CoinPriceListActivity : AppCompatActivity() {
         binding = ActivityCoinPriceListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initViews()
-
         viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
 
         coinInfoAdapter = CoinInfoAdapter(this)
 
         coinInfoAdapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
-            override fun onCoinClickListener(coinPriceInfo: CoinPriceInfo) {
+            override fun onCoinClickListener(coinInfo: CoinInfo) {
                 val intent = CoinDetailActivity.newIntent(
                     this@CoinPriceListActivity,
-                    coinPriceInfo.fromSymbol
+                    coinInfo.fromSymbol
                 )
                 startActivity(intent)
             }
         }
-        recyclerView.adapter = coinInfoAdapter
+        binding.recyclerViewCoinPriceList.adapter = coinInfoAdapter
 
-        viewModel.priceList.observe(this, Observer {
-            coinInfoAdapter.coinsInfoList = it
-        })
+        viewModel.coinInfoList.observe(this) {
+            coinInfoAdapter.coinInfoList = it
+        }
 
-    }
-
-    private fun initViews() {
-        recyclerView = binding.recyclerViewCoinPriceList
     }
 }
