@@ -1,9 +1,15 @@
 package com.example.cryptocoinstracker.presentation
 
 import android.app.Application
+import androidx.work.Configuration
+import com.example.cryptocoinstracker.data.workers.WorkerFactory
 import com.example.cryptocoinstracker.di.DaggerApplicationComponent
+import javax.inject.Inject
 
-class CoinApp: Application() {
+class CoinApp: Application(), Configuration.Provider {
+
+    @Inject
+    lateinit var workerFactory: WorkerFactory
 
      val component by lazy {
         DaggerApplicationComponent.factory().create(this)
@@ -14,4 +20,8 @@ class CoinApp: Application() {
         super.onCreate()
     }
 
+    override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
 }
