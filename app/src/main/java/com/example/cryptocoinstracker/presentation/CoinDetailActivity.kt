@@ -9,11 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cryptocoinstracker.R
 import com.example.cryptocoinstracker.databinding.ActivityCoinDetailBinding
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 class CoinDetailActivity : AppCompatActivity() {
 
 
-    private lateinit var viewModel: CoinDetailViewModel
+
     private val binding by lazy {
         ActivityCoinDetailBinding.inflate(layoutInflater)
     }
