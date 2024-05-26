@@ -8,17 +8,21 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.cryptocoinstracker.data.database.AppDatabase
+import com.example.cryptocoinstracker.data.database.CoinInfoDao
 import com.example.cryptocoinstracker.data.mapper.CoinMapper
 import com.example.cryptocoinstracker.data.network.ApiFactory
+import com.example.cryptocoinstracker.data.network.ApiService
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
 class RefreshDataWorker(
-    context: Context, workerParameters: WorkerParameters
+    context: Context,
+    workerParameters: WorkerParameters,
+    private val coinInfoDao: CoinInfoDao,
+    private val apiService: ApiService,
+    private val mapper: CoinMapper
 ) : CoroutineWorker(context, workerParameters) {
 
-    private val coinInfoDao = AppDatabase.getInstance(context).coinPriceInfoDao()
-    private val mapper = CoinMapper()
-    private val apiService = ApiFactory.apiService
 
     override suspend fun doWork(): Result {
         while (true) {
@@ -43,5 +47,13 @@ class RefreshDataWorker(
             return OneTimeWorkRequestBuilder<RefreshDataWorker>()
                 .build()
         }
+    }
+
+    class Factory @Inject constructor(
+        coinInfoDao: CoinInfoDao,
+        apiService: ApiService,
+        mapper: CoinMapper
+    ) {
+
     }
 }
