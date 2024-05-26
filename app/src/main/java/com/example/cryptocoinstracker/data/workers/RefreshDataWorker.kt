@@ -3,6 +3,7 @@ package com.example.cryptocoinstracker.data.workers
 import android.content.Context
 import androidx.work.Constraints
 import androidx.work.CoroutineWorker
+import androidx.work.ListenableWorker
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.Worker
@@ -22,7 +23,6 @@ class RefreshDataWorker(
     private val apiService: ApiService,
     private val mapper: CoinMapper
 ) : CoroutineWorker(context, workerParameters) {
-
 
     override suspend fun doWork(): Result {
         while (true) {
@@ -50,10 +50,15 @@ class RefreshDataWorker(
     }
 
     class Factory @Inject constructor(
-        coinInfoDao: CoinInfoDao,
-        apiService: ApiService,
-        mapper: CoinMapper
-    ) {
-
+        private val coinInfoDao: CoinInfoDao,
+        private val apiService: ApiService,
+        private val mapper: CoinMapper
+    ): ChildWorkerFactory {
+        override fun create(
+            context: Context,
+            workerParameters: WorkerParameters,
+        ): ListenableWorker {
+            return RefreshDataWorker(context, workerParameters, coinInfoDao, apiService, mapper)
+        }
     }
 }

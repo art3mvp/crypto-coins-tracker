@@ -1,19 +1,19 @@
 package com.example.cryptocoinstracker.di
 
-import android.app.Activity
 import android.app.Application
-import androidx.fragment.app.Fragment
+import com.example.cryptocoinstracker.presentation.CoinApp
 import com.example.cryptocoinstracker.presentation.CoinDetailFragment
 import com.example.cryptocoinstracker.presentation.CoinPriceListActivity
 import dagger.BindsInstance
 import dagger.Component
 
+@ApplicationScope
 @Component(
-    modules = [DataModule::class, ViewModelModule::class]
+    modules = [DataModule::class, ViewModelModule::class, WorkerModule::class]
 )
 interface ApplicationComponent {
 
-    fun inject(application: Application)
+    fun inject(application: CoinApp)
 
     fun inject(activity: CoinPriceListActivity)
 
